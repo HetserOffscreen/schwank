@@ -182,24 +182,30 @@ export default function App() {
         /* Avatar Minimalista */
         .avatar-container {
             position: relative;
-            width: 72px;
-            height: 72px;
+            display: inline-flex;
             margin: 0.5rem auto 1.5rem;
         }
 
         .avatar {
-            width: 100%;
-            height: 100%;
+            padding: 0.55rem 1.15rem;
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             border: 1px solid var(--card-border);
-            border-radius: 18px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.6rem;
-            font-weight: 700;
+            font-size: 1.2rem;
+            font-weight: 800;
             color: var(--accent-primary);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.05em;
+        }
+
+        .avatar sup {
+            font-size: 0.65rem;
+            margin-left: 3px;
+            font-weight: 600;
+            color: var(--text-secondary);
         }
 
         /* Textos */
@@ -434,7 +440,7 @@ export default function App() {
 
         <!-- Avatar Section -->
         <div class="avatar-container">
-            <div class="avatar">ES</div>
+            <div class="avatar">SCHWANK <sup>LTDA</sup></div>
         </div>
 
         <!-- Header Info -->
@@ -664,13 +670,13 @@ export default function App() {
           </div>
 
           {/* Avatar */}
-          <div className="relative w-18 h-18 mx-auto mb-6">
+          <div className="relative inline-flex mx-auto mb-6">
             <motion.div 
               whileHover={{ scale: 1.03 }}
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              className="w-full h-full bg-gradient-to-b from-slate-800 to-slate-950 border border-slate-800/80 rounded-2xl flex items-center justify-center text-2xl font-extrabold text-emerald-400 shadow-xl relative z-10"
+              className="px-5 py-2.5 bg-gradient-to-b from-slate-800 to-slate-950 border border-slate-800/80 rounded-xl flex items-center justify-center text-lg md:text-xl font-extrabold text-emerald-400 shadow-xl relative z-10 tracking-wider"
             >
-              ES
+              SCHWANK <sup className="text-[10px] md:text-[11px] text-slate-400 ml-1 font-bold">LTDA</sup>
             </motion.div>
           </div>
 
