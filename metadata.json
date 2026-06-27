@@ -1,0 +1,6 @@
+{
+  "name": "Ernesto Scheffer - Assistencia de Software",
+  "description": "Cartão Virtual Interativo de Ernesto Scheffer - Assistência Técnica de Software (Celulares & Computadores)",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
