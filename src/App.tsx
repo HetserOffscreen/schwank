@@ -63,7 +63,7 @@ export default function App() {
   const currentTranslation = translations[lang];
 
   return (
-    <div className="min-h-screen bg-[#090d16] text-slate-100 font-sans flex flex-col items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-[#121f2a] text-slate-100 font-sans flex flex-col items-center justify-center p-4 relative overflow-hidden">
       {/* Decorative Blur Spot */}
       <div className="absolute top-[15%] left-1/2 -translate-x-1/2 w-80 h-80 bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
 
@@ -76,7 +76,7 @@ export default function App() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="bg-slate-900/60 backdrop-blur-2xl border border-slate-800/80 rounded-[32px] p-8 md:p-10 pt-16 md:pt-18 shadow-2xl w-full text-center relative overflow-hidden"
+          className="bg-[#1b2d3a]/75 backdrop-blur-2xl border border-[#6392ab]/20 rounded-[32px] p-8 md:p-10 pt-16 md:pt-18 shadow-2xl w-full text-center relative overflow-hidden"
         >
           {/* Subtle upper glow line */}
           <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
@@ -124,7 +124,7 @@ export default function App() {
           </div>
 
           {/* Delicate Divider */}
-          <div className="my-6 h-[1px] bg-gradient-to-r from-transparent via-slate-800 to-transparent" />
+          <div className="my-6 h-[1px] bg-gradient-to-r from-transparent via-[#6392ab]/25 to-transparent" />
 
           {/* Premium Benefits List (No Emojis, Sleek SVG Icons) */}
           <div className="space-y-3 text-left mb-5" id="benefits-group">
