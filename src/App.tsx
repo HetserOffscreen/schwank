@@ -23,7 +23,7 @@ const translations = {
     btnWhatsapp: "Solicitar Orçamento via WhatsApp",
     btnEmail: "Enviar um E-mail",
     footerText: "Pronto para atendimento remoto imediato",
-    whatsappUrl: "https://wa.me/5500000000000?text=Olá%2C+gostaria+de+solicitar+um+orçamento+de+suporte+técnico%21"
+    whatsappUrl: "https://wa.me/5521990046651?text=Olá%2C+gostaria+de+solicitar+um+orçamento+de+suporte+técnico%21"
   },
   es: {
     subtitle: "Soporte Técnico de Software",
@@ -44,7 +44,7 @@ const translations = {
     btnWhatsapp: "Solicitar Presupuesto por WhatsApp",
     btnEmail: "Enviar un Correo",
     footerText: "Listo para soporte remoto inmediato",
-    whatsappUrl: "https://wa.me/5500000000000?text=Hola%2C+me+gustaria+solicitar+un+presupuesto+de+soporte+tecnico%21"
+    whatsappUrl: "https://wa.me/5521990046651?text=Hola%2C+me+gustaria+solicitar+un+presupuesto+de+soporte+tecnico%21"
   },
   en: {
     subtitle: "Software Technical Support",
@@ -65,7 +65,7 @@ const translations = {
     btnWhatsapp: "Request Estimate via WhatsApp",
     btnEmail: "Send an Email",
     footerText: "Ready for immediate remote assistance",
-    whatsappUrl: "https://wa.me/5500000000000?text=Hello%2C+I+would+like+to+request+a+technical+support+estimate%21"
+    whatsappUrl: "https://wa.me/5521990046651?text=Hello%2C+I+would+like+to+request+a+technical+support+estimate%21"
   }
 };
 
