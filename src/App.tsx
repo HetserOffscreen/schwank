@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
-import { Phone, Mail, Globe, MessageSquare, Check } from "lucide-react";
+import { Phone, Mail, Globe, MessageSquare, Check, Home, Zap } from "lucide-react";
 
 // Translation database
 const translations = {
@@ -10,10 +10,14 @@ const translations = {
     bioPart1: "Especialista em soluções de software com foco em otimização, segurança e resolução de problemas para celulares e computadores.",
     bioPart2: "Com atendimento em três idiomas e suporte remoto, tenha sua solução sem sair de casa.",
     bioCta: "Faça um orçamento agora!",
+    benefitHomeTitle: "Atendimento em Domicílio",
+    benefitHomeSub: "Zona Sul do Rio de Janeiro",
+    benefitSosTitle: "SOS",
+    benefitSosSub: "Pronto Atendimento para Copacabana e Ipanema",
     benefit1Title: "Atendimento Remoto",
     benefit1Sub: "Brasil & Exterior",
     benefit2Title: "Suporte Multilíngue",
-    benefit2Sub: "Português, English & Español",
+    benefit2Sub: "Português, Inglês e Espanhol",
     benefit3Title: "Orçamento Prévio",
     benefit3Sub: "Sem Compromisso",
     btnWhatsapp: "Solicitar Orçamento via WhatsApp",
@@ -27,10 +31,14 @@ const translations = {
     bioPart1: "Specialist in software solutions with a focus on optimization, security, and troubleshooting for phones and computers.",
     bioPart2: "With support in three languages and remote service, get your solution without leaving home.",
     bioCta: "Get an estimate now!",
+    benefitHomeTitle: "In-Home Support",
+    benefitHomeSub: "South Zone of Rio de Janeiro",
+    benefitSosTitle: "SOS",
+    benefitSosSub: "Urgent Support for Copacabana & Ipanema",
     benefit1Title: "Remote Support",
     benefit1Sub: "Brazil & Abroad",
     benefit2Title: "Multilingual Support",
-    benefit2Sub: "Português, English & Español",
+    benefit2Sub: "Portuguese, English and Spanish",
     benefit3Title: "Prior Estimate",
     benefit3Sub: "No Obligation",
     btnWhatsapp: "Request Estimate via WhatsApp",
@@ -44,10 +52,14 @@ const translations = {
     bioPart1: "Especialista en soluciones de software con enfoque en optimización, segurança y resolución de problemas para celulares y computadoras.",
     bioPart2: "Con soporte en tres idiomas y asistencia remota, obtenga su solución sin salir de casa.",
     bioCta: "¡Solicite un presupuesto ahora!",
+    benefitHomeTitle: "Atención a Domicilio",
+    benefitHomeSub: "Zona Sur de Río de Janeiro",
+    benefitSosTitle: "SOS",
+    benefitSosSub: "Atención Inmediata para Copacabana e Ipanema",
     benefit1Title: "Soporte Remoto",
-    benefit1Sub: "Brasil y Extranjero",
+    benefit1Sub: "Brasil & Extranjero",
     benefit2Title: "Soporte Multilingüe",
-    benefit2Sub: "Português, English & Español",
+    benefit2Sub: "Portugués, Inglés y Español",
     benefit3Title: "Presupuesto Previo",
     benefit3Sub: "Sin Compromiso",
     btnWhatsapp: "Solicitar Presupuesto por WhatsApp",
@@ -82,15 +94,15 @@ export default function App() {
           <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
 
           {/* Absolute Language Switcher */}
-          <div className="absolute top-4 right-4 flex items-center gap-1">
+          <div className="absolute top-4 right-4 flex items-center gap-1.5">
             {(["pt", "es", "en"] as const).map((language) => (
               <button
                 key={language}
                 onClick={() => setLang(language)}
-                className={`w-7 h-7 rounded-lg text-sm flex items-center justify-center transition-all cursor-pointer hover:bg-slate-800 border ${
+                className={`w-9 h-9 rounded-xl text-base flex items-center justify-center transition-all cursor-pointer hover:bg-slate-800/80 border ${
                   lang === language 
-                    ? "bg-emerald-500/10 border-emerald-500/30 text-white" 
-                    : "bg-transparent border-transparent text-slate-400"
+                    ? "bg-emerald-500/20 border-emerald-500/40 text-white shadow-sm" 
+                    : "bg-white/5 border-white/5 text-slate-400"
                 }`}
                 title={language === "pt" ? "Português" : language === "en" ? "English" : "Español"}
               >
@@ -129,6 +141,16 @@ export default function App() {
           {/* Premium Benefits List (No Emojis, Sleek SVG Icons) */}
           <div className="space-y-3 text-left mb-5" id="benefits-group">
             {[
+              { 
+                icon: <Home className="w-4 h-4 text-emerald-400" />, 
+                title: currentTranslation.benefitHomeTitle, 
+                subtitle: currentTranslation.benefitHomeSub 
+              },
+              { 
+                icon: <Zap className="w-4 h-4 text-emerald-400" />, 
+                title: currentTranslation.benefitSosTitle, 
+                subtitle: currentTranslation.benefitSosSub 
+              },
               { 
                 icon: <Globe className="w-4 h-4 text-emerald-400" />, 
                 title: currentTranslation.benefit1Title, 
@@ -188,7 +210,7 @@ export default function App() {
             </motion.a>
 
             <motion.a
-              href="mailto:seu-email@dominio.com"
+              href="mailto:contato@scheffer.help"
               whileHover={{ scale: 1.01, backgroundColor: "rgba(30, 41, 59, 0.9)" }}
               whileTap={{ scale: 0.99 }}
               id="cta-email"
