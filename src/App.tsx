@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "motion/react";
 import { Phone, Mail, Globe, MessageSquare, Check, Home, Zap } from "lucide-react";
+// @ts-expect-error - image asset
+import bgImage from "./assets/images/dark_chrome_bg_1782688407983.jpg";
 
 // Translation database
 const translations = {
@@ -13,7 +15,7 @@ const translations = {
     benefitHomeTitle: "Atendimento em Domicílio",
     benefitHomeSub: "Zona Sul do Rio de Janeiro",
     benefitSosTitle: "SOS - Pronto Atendimento",
-    benefitSosSub: "Leblon - Ipanema - Lagoa - Copacabana",
+    benefitSosSub: "Leblon - Ipanema - Copacabana",
     benefit1Title: "Suporte Remoto",
     benefit1Sub: "Brasil & Exterior",
     benefit2Title: "Atendimento Multilíngue",
@@ -34,7 +36,7 @@ const translations = {
     benefitHomeTitle: "Atención a Domicilio",
     benefitHomeSub: "Zona Sur de Río de Janeiro",
     benefitSosTitle: "SOS - Atención Inmediata",
-    benefitSosSub: "Leblon - Ipanema - Lagoa - Copacabana",
+    benefitSosSub: "Leblon - Ipanema - Copacabana",
     benefit1Title: "Soporte Remoto",
     benefit1Sub: "Brasil & Extranjero",
     benefit2Title: "Atención Multilingüe",
@@ -55,7 +57,7 @@ const translations = {
     benefitHomeTitle: "In-Home Support",
     benefitHomeSub: "South Zone of Rio de Janeiro",
     benefitSosTitle: "SOS - Urgent Support",
-    benefitSosSub: "Leblon - Ipanema - Lagoa - Copacabana",
+    benefitSosSub: "Leblon - Ipanema - Copacabana",
     benefit1Title: "Remote Support",
     benefit1Sub: "Brazil & Abroad",
     benefit2Title: "Multilingual Service",
@@ -75,7 +77,13 @@ export default function App() {
   const currentTranslation = translations[lang];
 
   return (
-    <div className="min-h-screen bg-[#121f2a] text-slate-100 font-sans flex flex-col items-center justify-center p-4 relative overflow-hidden">
+    <div 
+      className="min-h-screen bg-[#06080b] text-slate-100 font-sans flex flex-col items-center justify-center p-4 relative overflow-hidden bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url(${bgImage})` }}
+    >
+      {/* Dark overlay to ensure ultimate readability and rich moodiness */}
+      <div className="absolute inset-0 bg-black/45 pointer-events-none" />
+
       {/* Decorative Blur Spot */}
       <div className="absolute top-[15%] left-1/2 -translate-x-1/2 w-80 h-80 bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
 
@@ -88,7 +96,7 @@ export default function App() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="bg-[#1b2d3a]/75 backdrop-blur-2xl border border-[#6392ab]/20 rounded-[32px] px-5 py-8 sm:px-8 md:p-10 shadow-2xl w-full text-center relative overflow-hidden"
+          className="bg-black/30 backdrop-blur-3xl border border-white/10 rounded-[32px] px-5 py-8 sm:px-8 md:p-10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_1px_2px_rgba(255,255,255,0.05),0_25px_50px_-12px_rgba(0,0,0,0.7)] w-full text-center relative overflow-hidden"
         >
           {/* Subtle upper glow line */}
           <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
