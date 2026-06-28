@@ -12,39 +12,18 @@ const translations = {
     bioCta: "Faça um orçamento agora!",
     benefitHomeTitle: "Atendimento em Domicílio",
     benefitHomeSub: "Zona Sul do Rio de Janeiro",
-    benefitSosTitle: "SOS",
-    benefitSosSub: "Pronto Atendimento para Copacabana e Ipanema",
-    benefit1Title: "Atendimento Remoto",
+    benefitSosTitle: "SOS - Pronto Atendimento",
+    benefitSosSub: "Leblon - Ipanema - Lagoa - Copacabana",
+    benefit1Title: "Suporte Remoto",
     benefit1Sub: "Brasil & Exterior",
-    benefit2Title: "Suporte Multilíngue",
+    benefit2Title: "Atendimento Multilíngue",
     benefit2Sub: "Português, Inglês e Espanhol",
-    benefit3Title: "Orçamento Prévio",
+    benefit3Title: "Orçamento Gratuito",
     benefit3Sub: "Sem Compromisso",
     btnWhatsapp: "Solicitar Orçamento via WhatsApp",
     btnEmail: "Enviar um E-mail",
     footerText: "Pronto para atendimento remoto imediato",
     whatsappUrl: "https://wa.me/5500000000000?text=Olá%2C+gostaria+de+solicitar+um+orçamento+de+suporte+técnico%21"
-  },
-  en: {
-    subtitle: "Software Technical Support",
-    badge: "Phones & Computers",
-    bioPart1: "Specialist in software solutions with a focus on optimization, security, and troubleshooting for phones and computers.",
-    bioPart2: "With support in three languages and remote service, get your solution without leaving home.",
-    bioCta: "Get an estimate now!",
-    benefitHomeTitle: "In-Home Support",
-    benefitHomeSub: "South Zone of Rio de Janeiro",
-    benefitSosTitle: "SOS",
-    benefitSosSub: "Urgent Support for Copacabana & Ipanema",
-    benefit1Title: "Remote Support",
-    benefit1Sub: "Brazil & Abroad",
-    benefit2Title: "Multilingual Support",
-    benefit2Sub: "Portuguese, English and Spanish",
-    benefit3Title: "Prior Estimate",
-    benefit3Sub: "No Obligation",
-    btnWhatsapp: "Request Estimate via WhatsApp",
-    btnEmail: "Send an Email",
-    footerText: "Ready for immediate remote assistance",
-    whatsappUrl: "https://wa.me/5500000000000?text=Hello%2C+I+would+like+to+request+a+technical+support+estimate%21"
   },
   es: {
     subtitle: "Soporte Técnico de Software",
@@ -54,18 +33,39 @@ const translations = {
     bioCta: "¡Solicite un presupuesto ahora!",
     benefitHomeTitle: "Atención a Domicilio",
     benefitHomeSub: "Zona Sur de Río de Janeiro",
-    benefitSosTitle: "SOS",
-    benefitSosSub: "Atención Inmediata para Copacabana e Ipanema",
+    benefitSosTitle: "SOS - Atención Inmediata",
+    benefitSosSub: "Leblon - Ipanema - Lagoa - Copacabana",
     benefit1Title: "Soporte Remoto",
     benefit1Sub: "Brasil & Extranjero",
-    benefit2Title: "Soporte Multilingüe",
+    benefit2Title: "Atención Multilingüe",
     benefit2Sub: "Portugués, Inglés y Español",
-    benefit3Title: "Presupuesto Previo",
+    benefit3Title: "Presupuesto Gratis",
     benefit3Sub: "Sin Compromiso",
     btnWhatsapp: "Solicitar Presupuesto por WhatsApp",
     btnEmail: "Enviar un Correo",
     footerText: "Listo para soporte remoto inmediato",
     whatsappUrl: "https://wa.me/5500000000000?text=Hola%2C+me+gustaria+solicitar+un+presupuesto+de+soporte+tecnico%21"
+  },
+  en: {
+    subtitle: "Software Technical Support",
+    badge: "Phones & Computers",
+    bioPart1: "Specialist in software solutions with a focus on optimization, security, and troubleshooting for phones and computers.",
+    bioPart2: "With support in three languages and remote service, get your solution without leaving home.",
+    bioCta: "Get an estimate now!",
+    benefitHomeTitle: "In-Home Support",
+    benefitHomeSub: "South Zone of Rio de Janeiro",
+    benefitSosTitle: "SOS - Urgent Support",
+    benefitSosSub: "Leblon - Ipanema - Lagoa - Copacabana",
+    benefit1Title: "Remote Support",
+    benefit1Sub: "Brazil & Abroad",
+    benefit2Title: "Multilingual Service",
+    benefit2Sub: "Portuguese, English and Spanish",
+    benefit3Title: "Free Estimate",
+    benefit3Sub: "No Attachments",
+    btnWhatsapp: "Request Estimate via WhatsApp",
+    btnEmail: "Send an Email",
+    footerText: "Ready for immediate remote assistance",
+    whatsappUrl: "https://wa.me/5500000000000?text=Hello%2C+I+would+like+to+request+a+technical+support+estimate%21"
   }
 };
 
@@ -88,13 +88,13 @@ export default function App() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="bg-[#1b2d3a]/75 backdrop-blur-2xl border border-[#6392ab]/20 rounded-[32px] p-8 md:p-10 pt-16 md:pt-18 shadow-2xl w-full text-center relative overflow-hidden"
+          className="bg-[#1b2d3a]/75 backdrop-blur-2xl border border-[#6392ab]/20 rounded-[32px] p-8 md:p-10 shadow-2xl w-full text-center relative overflow-hidden"
         >
           {/* Subtle upper glow line */}
           <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
 
-          {/* Absolute Language Switcher */}
-          <div className="absolute top-4 right-4 flex items-center gap-1.5">
+          {/* Centered Language Switcher at the Top */}
+          <div className="flex justify-center items-center gap-2 mb-6" id="lang-switcher">
             {(["pt", "es", "en"] as const).map((language) => (
               <button
                 key={language}
@@ -129,9 +129,6 @@ export default function App() {
           <div className="mt-5 text-center px-1 space-y-2.5 text-xs md:text-sm leading-relaxed">
             <p className="text-slate-100 font-semibold">
               {currentTranslation.bioPart1}
-            </p>
-            <p className="text-slate-100 font-semibold">
-              {currentTranslation.bioPart2}
             </p>
           </div>
 
@@ -186,6 +183,9 @@ export default function App() {
               </motion.div>
             ))}
           </div>
+
+          {/* Delicate Divider before CTA */}
+          <div className="my-6 h-[1px] bg-gradient-to-r from-transparent via-[#6392ab]/25 to-transparent" />
 
           {/* CTA phrase between benefits and WhatsApp */}
           <div className="text-center mb-5" id="cta-phrase">
