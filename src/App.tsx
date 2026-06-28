@@ -88,18 +88,18 @@ export default function App() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="bg-[#1b2d3a]/75 backdrop-blur-2xl border border-[#6392ab]/20 rounded-[32px] p-8 md:p-10 shadow-2xl w-full text-center relative overflow-hidden"
+          className="bg-[#1b2d3a]/75 backdrop-blur-2xl border border-[#6392ab]/20 rounded-[32px] px-5 py-8 sm:px-8 md:p-10 shadow-2xl w-full text-center relative overflow-hidden"
         >
           {/* Subtle upper glow line */}
           <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
 
           {/* Centered Language Switcher at the Top */}
-          <div className="flex justify-center items-center gap-2 mb-6" id="lang-switcher">
+          <div className="flex justify-center items-center gap-2.5 mb-6" id="lang-switcher">
             {(["pt", "es", "en"] as const).map((language) => (
               <button
                 key={language}
                 onClick={() => setLang(language)}
-                className={`w-9 h-9 rounded-xl text-base flex items-center justify-center transition-all cursor-pointer hover:bg-slate-800/80 border ${
+                className={`w-10 h-10 rounded-xl text-lg flex items-center justify-center transition-all cursor-pointer hover:bg-slate-800/80 border ${
                   lang === language 
                     ? "bg-emerald-500/20 border-emerald-500/40 text-white shadow-sm" 
                     : "bg-white/5 border-white/5 text-slate-400"
@@ -112,21 +112,21 @@ export default function App() {
           </div>
 
           {/* Identity Header */}
-          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white mb-2" id="card-name">
+          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-2.5" id="card-name">
             Ernesto Scheffer
           </h1>
           
-          <p className="text-slate-300 font-medium text-sm md:text-base leading-relaxed" id="card-sub-1">
+          <p className="text-slate-300 font-medium text-base md:text-lg leading-relaxed" id="card-sub-1">
             {currentTranslation.subtitle}
           </p>
-          <div className="mt-1" id="card-sub-2">
-            <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full">
+          <div className="mt-2" id="card-sub-2">
+            <span className="inline-block text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3.5 py-1 rounded-full">
               {currentTranslation.badge}
             </span>
           </div>
 
           {/* Professional Bio with Selected Language Translation */}
-          <div className="mt-5 text-center px-1 space-y-2.5 text-xs md:text-sm leading-relaxed">
+          <div className="mt-6 text-center px-1 space-y-2.5 text-sm md:text-base leading-relaxed">
             <p className="text-slate-100 font-semibold">
               {currentTranslation.bioPart1}
             </p>
@@ -136,30 +136,30 @@ export default function App() {
           <div className="my-6 h-[1px] bg-gradient-to-r from-transparent via-[#6392ab]/25 to-transparent" />
 
           {/* Premium Benefits List (No Emojis, Sleek SVG Icons) */}
-          <div className="space-y-3 text-left mb-5" id="benefits-group">
+          <div className="space-y-3.5 text-left mb-6" id="benefits-group">
             {[
               { 
-                icon: <Home className="w-4 h-4 text-emerald-400" />, 
+                icon: <Home className="w-5 h-5 text-emerald-400" />, 
                 title: currentTranslation.benefitHomeTitle, 
                 subtitle: currentTranslation.benefitHomeSub 
               },
               { 
-                icon: <Zap className="w-4 h-4 text-emerald-400" />, 
+                icon: <Zap className="w-5 h-5 text-emerald-400" />, 
                 title: currentTranslation.benefitSosTitle, 
                 subtitle: currentTranslation.benefitSosSub 
               },
               { 
-                icon: <Globe className="w-4 h-4 text-emerald-400" />, 
+                icon: <Globe className="w-5 h-5 text-emerald-400" />, 
                 title: currentTranslation.benefit1Title, 
                 subtitle: currentTranslation.benefit1Sub 
               },
               { 
-                icon: <MessageSquare className="w-4 h-4 text-emerald-400" />, 
+                icon: <MessageSquare className="w-5 h-5 text-emerald-400" />, 
                 title: currentTranslation.benefit2Title, 
                 subtitle: currentTranslation.benefit2Sub 
               },
               { 
-                icon: <Check className="w-4 h-4 text-emerald-400" />, 
+                icon: <Check className="w-5 h-5 text-emerald-400" />, 
                 title: currentTranslation.benefit3Title, 
                 subtitle: currentTranslation.benefit3Sub 
               }
@@ -167,16 +167,16 @@ export default function App() {
               <motion.div
                 key={idx}
                 whileHover={{ x: 2, backgroundColor: "rgba(255, 255, 255, 0.02)" }}
-                className="flex items-center gap-3.5 p-3 rounded-2xl bg-white/[0.01] border border-white/[0.015] transition-colors"
+                className="flex items-center gap-4 p-3.5 rounded-2xl bg-white/[0.01] border border-white/[0.015] transition-colors"
               >
-                <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/15 flex items-center justify-center flex-shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/15 flex items-center justify-center flex-shrink-0">
                   {item.icon}
                 </div>
                 <div>
-                  <h3 className="text-[10px] font-bold uppercase tracking-wider text-slate-400 leading-none mb-1">
+                  <h3 className="text-[11px] md:text-xs font-bold uppercase tracking-wider text-slate-400 leading-none mb-1">
                     {item.title}
                   </h3>
-                  <p className="text-xs font-semibold text-slate-200">
+                  <p className="text-sm md:text-base font-semibold text-slate-200">
                     {item.subtitle}
                   </p>
                 </div>
@@ -189,13 +189,13 @@ export default function App() {
 
           {/* CTA phrase between benefits and WhatsApp */}
           <div className="text-center mb-5" id="cta-phrase">
-            <p className="text-white font-bold text-xs md:text-sm tracking-widest uppercase">
+            <p className="text-white font-bold text-sm md:text-base tracking-widest uppercase">
               {currentTranslation.bioCta}
             </p>
           </div>
 
           {/* Action CTAs */}
-          <div className="space-y-3" id="cta-group">
+          <div className="space-y-3.5" id="cta-group">
             <motion.a
               href={currentTranslation.whatsappUrl}
               target="_blank"
@@ -203,10 +203,10 @@ export default function App() {
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
               id="cta-whatsapp"
-              className="flex items-center justify-center gap-2.5 w-full py-3.5 px-6 bg-emerald-500 text-slate-950 font-bold rounded-2xl transition-all shadow-lg shadow-emerald-500/10 hover:shadow-emerald-500/25 hover:bg-emerald-400 text-sm md:text-base cursor-pointer"
+              className="flex items-center justify-center gap-1.5 sm:gap-2.5 w-full py-4 px-3 sm:px-6 bg-emerald-500 text-slate-950 font-bold rounded-2xl transition-all shadow-lg shadow-emerald-500/10 hover:shadow-emerald-500/25 hover:bg-emerald-400 text-[13px] min-[360px]:text-sm sm:text-base md:text-lg cursor-pointer whitespace-nowrap"
             >
-              <Phone className="w-4 h-4 fill-current" />
-              {currentTranslation.btnWhatsapp}
+              <Phone className="w-4 h-4 sm:w-5 sm:h-5 fill-current flex-shrink-0" />
+              <span>{currentTranslation.btnWhatsapp}</span>
             </motion.a>
 
             <motion.a
@@ -214,16 +214,16 @@ export default function App() {
               whileHover={{ scale: 1.01, backgroundColor: "rgba(30, 41, 59, 0.9)" }}
               whileTap={{ scale: 0.99 }}
               id="cta-email"
-              className="flex items-center justify-center gap-2.5 w-full py-3.5 px-6 bg-slate-800 border border-slate-700/50 text-white font-semibold rounded-2xl transition-all text-sm md:text-base cursor-pointer hover:border-slate-600"
+              className="flex items-center justify-center gap-1.5 sm:gap-2.5 w-full py-4 px-3 sm:px-6 bg-slate-800 border border-slate-700/50 text-white font-bold rounded-2xl transition-all text-[13px] min-[360px]:text-sm sm:text-base md:text-lg cursor-pointer hover:border-slate-600 whitespace-nowrap"
             >
-              <Mail className="w-4 h-4" />
-              {currentTranslation.btnEmail}
+              <Mail className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+              <span>{currentTranslation.btnEmail}</span>
             </motion.a>
           </div>
 
           {/* Clean trust / status indicator footer */}
-          <div className="mt-6 flex items-center justify-center gap-2 text-xs text-slate-500 font-medium">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <div className="mt-6 flex items-center justify-center gap-2 text-xs md:text-sm text-slate-400 font-medium">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
             <span>{currentTranslation.footerText}</span>
           </div>
         </motion.div>
