@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { motion } from "motion/react";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { Phone, Mail, Globe, MessageSquare, Check, Home, Zap } from "lucide-react";
 // @ts-expect-error - image asset
 import bgImage from "./assets/images/dark_chrome_bg_1782688407983.jpg";
@@ -10,7 +10,6 @@ const translations = {
     subtitle: "Assistência Técnica de Software",
     badge: "Celulares & Computadores",
     bioPart1: "Especialista em soluções de software com foco em otimização, segurança e resolução de problemas para celulares e computadores.",
-    bioPart2: "Com atendimento em três idiomas e suporte remoto, tenha sua solução sem sair de casa.",
     bioCta: "Faça um orçamento agora!",
     benefitHomeTitle: "Atendimento em Domicílio",
     benefitHomeSub: "Zona Sul do Rio de Janeiro",
@@ -31,7 +30,6 @@ const translations = {
     subtitle: "Soporte Técnico de Software",
     badge: "Celulares & Computadoras",
     bioPart1: "Especialista en soluciones de software con enfoque en optimización, segurança y resolución de problemas para celulares y computadoras.",
-    bioPart2: "Con soporte en tres idiomas y asistencia remota, obtenga su solución sin salir de casa.",
     bioCta: "¡Solicite un presupuesto ahora!",
     benefitHomeTitle: "Atención a Domicilio",
     benefitHomeSub: "Zona Sur de Río de Janeiro",
@@ -52,7 +50,6 @@ const translations = {
     subtitle: "Software Technical Support",
     badge: "Phones & Computers",
     bioPart1: "Specialist in software solutions with a focus on optimization, security, and troubleshooting for phones and computers.",
-    bioPart2: "With support in three languages and remote service, get your solution without leaving home.",
     bioCta: "Get an estimate now!",
     benefitHomeTitle: "In-Home Support",
     benefitHomeSub: "South Zone of Rio de Janeiro",
@@ -73,6 +70,36 @@ const translations = {
 
 export default function App() {
   const [lang, setLang] = useState<"pt" | "en" | "es">("pt");
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Auto-detect browser language if available
+    try {
+      const browserLang = navigator.language.slice(0, 2);
+      if (browserLang === "es") {
+        setLang("es");
+      } else if (browserLang === "en") {
+        setLang("en");
+      }
+    } catch (e) {
+      // Fail silently
+    }
+
+    // Preload background image
+    const img = new Image();
+    img.src = bgImage;
+    
+    const timer = setTimeout(() => {
+      if (img.complete) {
+        setIsLoaded(true);
+      } else {
+        img.onload = () => setIsLoaded(true);
+        img.onerror = () => setIsLoaded(true);
+      }
+    }, 1400); // 1.4s of elegant minimal booting transition
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const currentTranslation = translations[lang];
 
@@ -81,6 +108,48 @@ export default function App() {
       className="min-h-screen bg-[#06080b] text-slate-100 font-sans flex flex-col items-center justify-center p-4 relative overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${bgImage})` }}
     >
+      <AnimatePresence mode="wait">
+        {!isLoaded && (
+          <motion.div
+            key="loader"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 0.5, ease: "easeInOut" } }}
+            className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-[#06080b] p-6 text-center"
+          >
+            {/* Subtle premium background lighting for the loading card */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-emerald-500/10 rounded-full blur-[90px] pointer-events-none" />
+            
+            {/* Elegant glassmorphic loading card */}
+            <motion.div 
+              initial={{ scale: 0.96, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="bg-black/30 backdrop-blur-3xl border border-white/10 rounded-[32px] p-8 max-w-[200px] w-full aspect-square flex flex-col items-center justify-center shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_1px_2px_rgba(255,255,255,0.05),0_25px_50px_-12px_rgba(0,0,0,0.7)]"
+            >
+              {/* Spinner & Glow */}
+              <div className="relative w-16 h-16 flex items-center justify-center">
+                {/* Glow ring */}
+                <div className="absolute inset-0 rounded-full bg-emerald-500/10 blur-[10px]" />
+                
+                {/* Outer spinning ring */}
+                <motion.div 
+                  animate={{ rotate: 360 }}
+                  transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
+                  className="w-12 h-12 rounded-full border-2 border-emerald-500/20 border-t-emerald-400"
+                />
+                
+                {/* Inner counter-spinning ring */}
+                <motion.div 
+                  animate={{ rotate: -360 }}
+                  transition={{ repeat: Infinity, duration: 1.8, ease: "linear" }}
+                  className="absolute w-7 h-7 rounded-full border border-emerald-500/10 border-b-emerald-400/40"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Dark overlay to ensure ultimate readability and rich moodiness */}
       <div className="absolute inset-0 bg-black/45 pointer-events-none" />
 
