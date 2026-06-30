@@ -9,7 +9,7 @@ const translations = {
   pt: {
     subtitle: "Assistência Técnica de Software",
     badge: "Celulares & Computadores",
-    bioPart1: "Especialista em soluções de software com foco em otimização, segurança e resolução de problemas para celulares e computadores.",
+    bioPart1: "Especialista em soluções de software com foco em optimização, segurança e resolução de problemas para celulares e computadores.",
     benefitHomeTitle: "Atendimento em Domicílio",
     benefitHomeSub: "Zona Sul do Rio de Janeiro",
     benefitSosTitle: "SOS - Pronto Atendimento",
