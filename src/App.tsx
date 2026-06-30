@@ -10,7 +10,6 @@ const translations = {
     subtitle: "Assistência Técnica de Software",
     badge: "Celulares & Computadores",
     bioPart1: "Especialista em soluções de software com foco em otimização, segurança e resolução de problemas para celulares e computadores.",
-    bioCta: "Faça um orçamento agora!",
     benefitHomeTitle: "Atendimento em Domicílio",
     benefitHomeSub: "Zona Sul do Rio de Janeiro",
     benefitSosTitle: "SOS - Pronto Atendimento",
@@ -30,7 +29,6 @@ const translations = {
     subtitle: "Soporte Técnico de Software",
     badge: "Celulares & Computadoras",
     bioPart1: "Especialista en soluciones de software con enfoque en optimización, segurança y resolución de problemas para celulares y computadoras.",
-    bioCta: "¡Solicite un presupuesto ahora!",
     benefitHomeTitle: "Atención a Domicilio",
     benefitHomeSub: "Zona Sur de Río de Janeiro",
     benefitSosTitle: "SOS - Atención Inmediata",
@@ -50,7 +48,6 @@ const translations = {
     subtitle: "Software Technical Support",
     badge: "Phones & Computers",
     bioPart1: "Specialist in software solutions with a focus on optimization, security, and troubleshooting for phones and computers.",
-    bioCta: "Get an estimate now!",
     benefitHomeTitle: "In-Home Support",
     benefitHomeSub: "South Zone of Rio de Janeiro",
     benefitSosTitle: "SOS - Urgent Support",
@@ -205,13 +202,6 @@ export default function App() {
 
           {/* Delicate Divider before CTA */}
           <div className="my-6 h-[1px] bg-gradient-to-r from-transparent via-[#6392ab]/25 to-transparent" />
-
-          {/* CTA phrase between benefits and WhatsApp */}
-          <div className="text-center mb-5" id="cta-phrase">
-            <p className="text-white font-bold text-sm md:text-base tracking-widest uppercase">
-              {currentTranslation.bioCta}
-            </p>
-          </div>
 
           {/* Action CTAs */}
           <div className="space-y-3.5" id="cta-group">
