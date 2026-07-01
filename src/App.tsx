@@ -29,7 +29,7 @@ const translations = {
     es: {
         subtitle: "Soporte Técnico de Software",
         badge: "Celulares & Computadoras",
-        bioPart1: "Especialista en soluções de software com enfoque en optimización, segurança y resolución de problemas para celulares y computadoras.",
+        bioPart1: "Especialista em soluções de software com enfoque en optimización, segurança y resolución de problemas para celulares y computadoras.",
         benefitHomeTitle: "Atención a Domicilio",
         benefitHomeSub: "Zona Sur de Río de Janeiro",
         benefitSosTitle: "SOS - Atención Inmediata",
@@ -66,21 +66,13 @@ const translations = {
     }
 };
 
-const [lang, setLang] = useState<"pt" | "en" | "es">("pt");
+export default function App() {
+    const [lang, setLang] = useState<"pt" | "en" | "es">("pt");
     const [cachedGeo, setCachedGeo] = useState<{ ip: string; city: string; state: string } | null>(null);
 
-    // Centralized logging helper with built-in 1-minute cooldown guards
+    // Centralized logging helper to log views and clicks instantly
     const logEvent = async (action: "page_view" | "whatsapp_click" | "email_click", selectedLang: string) => {
         try {
-            const now = Date.now();
-            const cooldownKey = `last_log_${action}`;
-            const lastLog = localStorage.getItem(cooldownKey);
-
-            // If the action occurred less than 1 minute ago, abort entirely
-            if (lastLog && now - parseInt(lastLog, 10) < 1 * 60 * 1000) {
-                return;
-            }
-
             // Resolve the visitor's location using memory cache, fallback to external fetch if empty
             let geo = cachedGeo;
             if (!geo) {
@@ -90,7 +82,7 @@ const [lang, setLang] = useState<"pt" | "en" | "es">("pt");
                 geo = {
                     ip: geoData.ip || "unknown",
                     city: geoData.city || "unknown",
-                    state: geoData.region_code || "unknown" // Grabs state initials like 'RJ', 'SP'
+                    state: geoData.region_code || "unknown"
                 };
                 setCachedGeo(geo);
             }
@@ -106,9 +98,6 @@ const [lang, setLang] = useState<"pt" | "en" | "es">("pt");
                 user_agent: navigator.userAgent,
                 action: action
             }]);
-
-            // Save the timestamp to register a successful log event window
-            localStorage.setItem(cooldownKey, now.toString());
         } catch (e) {
             // Fail silently to keep user experience uninterrupted
         }
