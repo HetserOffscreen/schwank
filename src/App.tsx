@@ -70,15 +70,15 @@ export default function App() {
     const [lang, setLang] = useState<"pt" | "en" | "es">("pt");
     const [cachedIp, setCachedIp] = useState<string | null>(null);
 
-    // Centralized logging helper with built-in 10-minute cooldown guards
+ // Centralized logging helper with built-in 1-minute cooldown guards
     const logEvent = async (action: "page_view" | "whatsapp_click" | "email_click", selectedLang: string) => {
         try {
             const now = Date.now();
             const cooldownKey = `last_log_${action}`;
             const lastLog = localStorage.getItem(cooldownKey);
 
-            // If the action occurred less than 10 minutes ago, abort entirely
-            if (lastLog && now - parseInt(lastLog, 10) < 10 * 60 * 1000) {
+            // If the action occurred less than 1 minute ago, abort entirely
+            if (lastLog && now - parseInt(lastLog, 10) < 1 * 60 * 1000) {
                 return;
             }
 
