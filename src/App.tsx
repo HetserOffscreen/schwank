@@ -76,13 +76,13 @@ export default function App() {
             // Resolve the visitor's location using memory cache, fallback to external fetch if empty
             let geo = cachedGeo;
             if (!geo) {
-                const geoResponse = await fetch("https://ipapi.co/json/");
+                const geoResponse = await fetch("https://freeipapi.com/api/json");
                 const geoData = await geoResponse.json();
                 
                 geo = {
-                    ip: geoData.ip || "unknown",
-                    city: geoData.city || "unknown",
-                    state: geoData.region_code || "unknown"
+                    ip: geoData.ipAddress || "unknown",
+                    city: geoData.cityName || "unknown",
+                    state: geoData.regionName || "unknown"
                 };
                 setCachedGeo(geo);
             }
