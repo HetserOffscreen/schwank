@@ -77,13 +77,13 @@ export default function App() {
         // Block 1: Attempt to grab location, but fail gracefully if adblockers kill it
         if (!geo) {
             try {
-                const geoResponse = await fetch("https://freeipapi.com/api/json");
+                const geoResponse = await fetch("https://get.geojs.io/v1/ip/geo.json");
                 const geoData = await geoResponse.json();
                 
                 geo = {
-                    ip: geoData.ipAddress || "unknown",
-                    city: geoData.cityName || "unknown",
-                    state: geoData.regionName || "unknown"
+                    ip: geoData.ip || "unknown",
+                    city: geoData.city || "unknown",
+                    state: geoData.region || "unknown"
                 };
                 setCachedGeo(geo);
             } catch (fetchError) {
