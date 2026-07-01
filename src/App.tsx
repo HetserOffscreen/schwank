@@ -70,12 +70,13 @@ export default function App() {
     const [lang, setLang] = useState<"pt" | "en" | "es">("pt");
     const [cachedGeo, setCachedGeo] = useState<{ ip: string; city: string; state: string } | null>(null);
 
-    // Centralized logging helper to log views and clicks instantly
+// Centralized logging helper to log views and clicks instantly
     const logEvent = async (action: "page_view" | "whatsapp_click" | "email_click", selectedLang: string) => {
-        try {
-            // Resolve the visitor's location using memory cache, fallback to external fetch if empty
-            let geo = cachedGeo;
-            if (!geo) {
+        let geo = cachedGeo;
+
+        // Block 1: Attempt to grab location, but fail gracefully if adblockers kill it
+        if (!geo) {
+            try {
                 const geoResponse = await fetch("https://freeipapi.com/api/json");
                 const geoData = await geoResponse.json();
                 
@@ -85,9 +86,14 @@ export default function App() {
                     state: geoData.regionName || "unknown"
                 };
                 setCachedGeo(geo);
+            } catch (fetchError) {
+                console.warn("Location API blocked, falling back to unknown.");
+                geo = { ip: "unknown", city: "unknown", state: "unknown" };
             }
+        }
 
-            // Write data cleanly to Supabase
+        // Block 2: Push to Supabase (Guaranteed to execute even if location fails)
+        try {
             await supabase.from("site_logs").insert([{
                 ip: geo.ip,
                 city: geo.city,
@@ -98,8 +104,8 @@ export default function App() {
                 user_agent: navigator.userAgent,
                 action: action
             }]);
-        } catch (e) {
-           console.error("LOGGING ERROR:", e);
+        } catch (supabaseError) {
+            console.error("SUPABASE LOGGING ERROR:", supabaseError);
         }
     };
 
