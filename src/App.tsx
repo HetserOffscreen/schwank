@@ -99,7 +99,7 @@ export default function App() {
                 action: action
             }]);
         } catch (e) {
-            // Fail silently to keep user experience uninterrupted
+           console.error("LOGGING ERROR:", e);
         }
     };
 
