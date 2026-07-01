@@ -66,11 +66,10 @@ const translations = {
     }
 };
 
-export default function App() {
-    const [lang, setLang] = useState<"pt" | "en" | "es">("pt");
-    const [cachedIp, setCachedIp] = useState<string | null>(null);
+const [lang, setLang] = useState<"pt" | "en" | "es">("pt");
+    const [cachedGeo, setCachedGeo] = useState<{ ip: string; city: string; state: string } | null>(null);
 
- // Centralized logging helper with built-in 1-minute cooldown guards
+    // Centralized logging helper with built-in 1-minute cooldown guards
     const logEvent = async (action: "page_view" | "whatsapp_click" | "email_click", selectedLang: string) => {
         try {
             const now = Date.now();
@@ -82,20 +81,25 @@ export default function App() {
                 return;
             }
 
-            // Resolve the visitor's IP using memory cache, fallback to external fetch if empty
-            let ip = cachedIp;
-            if (!ip) {
-                const ipResponse = await fetch("https://api.ipify.org?format=json");
-                const ipData = await ipResponse.json();
-                ip = ipData.ip;
-                if (ip) {
-                    setCachedIp(ip);
-                }
+            // Resolve the visitor's location using memory cache, fallback to external fetch if empty
+            let geo = cachedGeo;
+            if (!geo) {
+                const geoResponse = await fetch("https://ipapi.co/json/");
+                const geoData = await geoResponse.json();
+                
+                geo = {
+                    ip: geoData.ip || "unknown",
+                    city: geoData.city || "unknown",
+                    state: geoData.region_code || "unknown" // Grabs state initials like 'RJ', 'SP'
+                };
+                setCachedGeo(geo);
             }
 
             // Write data cleanly to Supabase
             await supabase.from("site_logs").insert([{
-                ip: ip || "unknown",
+                ip: geo.ip,
+                city: geo.city,
+                state: geo.state,
                 referrer: document.referrer || "direct",
                 browser_lang: navigator.language,
                 selected_lang: selectedLang,
