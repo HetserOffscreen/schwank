@@ -8,3 +8,4 @@ coverage/
 !.env.example
 todo.md
 resource/
+monitor.js
