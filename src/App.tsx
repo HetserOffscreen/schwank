@@ -8,7 +8,7 @@ import bgImage from "./assets/images/dark_chrome_bg_1782688407983.jpg";
 // Translation database
 const translations = {
     pt: {
-        subtitle: "Assistência Técnico de Software",
+        subtitle: "Assistência Técnica de Software",
         badge: "Celulares & Computadores",
         bioPart1: "Especialista em soluções de software com foco em optimização, segurança e resolução de problemas para celulares e computadores.",
         benefitHomeTitle: "Atendimento em Domicílio",
