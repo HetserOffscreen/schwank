@@ -375,13 +375,19 @@ body {
   box-shadow: none;
 }
 
-/* Smooth transition for theming */
+/* Smooth transition for theming - hardware accelerated, avoiding heavy background gradients and shadows */
 body, .glass, .glass-card, .glass-btn, .glass-btn-ghost, .glass-badge-aqua {
-  transition: background-color 0.5s var(--ease-smooth),
-              background 0.5s var(--ease-smooth),
-              border-color 0.5s var(--ease-smooth),
-              color 0.5s var(--ease-smooth),
-              box-shadow 0.5s var(--ease-smooth);
+  transition: background-color 300ms var(--ease-smooth),
+              border-color 300ms var(--ease-smooth),
+              color 300ms var(--ease-smooth);
+}
+
+/* Optimize performance on mobile by disabling continuous background blob animations */
+@media (max-width: 768px) {
+  .scene__blob {
+    animation: none !important;
+    transform: none !important;
+  }
 }
 
 /* Animations */

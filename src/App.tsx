@@ -104,7 +104,7 @@ export default function App() {
 
   return (
     <div 
-      className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] font-sans flex flex-col items-center justify-center p-4 relative overflow-hidden transition-colors duration-500"
+      className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] font-sans flex flex-col items-center justify-center p-4 relative overflow-hidden transition-colors duration-500 select-none"
     >
       {/* Floating Theme Toggle */}
       <button 
@@ -124,7 +124,7 @@ export default function App() {
 
       {/* Background Image layer with transition */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-500 pointer-events-none"
+        className="fixed inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-500 pointer-events-none"
         style={{ 
           backgroundImage: `url(${bgImage})`,
           opacity: theme === "dark" ? 1 : 0.05
@@ -133,7 +133,7 @@ export default function App() {
 
       {/* Dark overlay to ensure ultimate readability and rich moodiness */}
       <div 
-        className="absolute inset-0 bg-black transition-opacity duration-500 pointer-events-none" 
+        className="fixed inset-0 bg-black transition-opacity duration-500 pointer-events-none" 
         style={{
           opacity: theme === "dark" ? 0.55 : 0.0
         }}
